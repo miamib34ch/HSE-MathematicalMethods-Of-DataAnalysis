@@ -1,15 +1,15 @@
 x <- c(1, 2, 6, 8, 9, 7, 7.5, 10, 3, 4, 5.5)
 y <- c(2, 4, 11, 15, 19, 16, 14, 23, 7, 6, 11)
 
-plot(x, y) #äèàãðàììà ðàññåÿíèÿ
+plot(x, y) #Ð´Ð¸Ð°Ð³Ñ€Ð°Ð¼Ð¼Ð° Ñ€Ð°ÑÑÐµÑÐ½Ð¸Ñ
 
-cor(x, y) #êîýôôèöèåíò êîððåëÿöèè
-cor(x, y, use = "complete.obs")  #êîýôôèöèåíò êîððåëÿöèè, åñëè åñòü NA â âûáîðêå
-cor(x, y, method = 'spearman') #êîýôôèöèåíò êîððåëÿöèè Ñïèðìåíà
+cor(x, y) #ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚ ÐºÐ¾Ñ€Ñ€ÐµÐ»ÑÑ†Ð¸Ð¸
+cor(x, y, use = "complete.obs")  #ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚ ÐºÐ¾Ñ€Ñ€ÐµÐ»ÑÑ†Ð¸Ð¸, ÐµÑÐ»Ð¸ ÐµÑÑ‚ÑŒ NA Ð² Ð²Ñ‹Ð±Ð¾Ñ€ÐºÐµ
+cor(x, y, method = 'spearman') #ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚ ÐºÐ¾Ñ€Ñ€ÐµÐ»ÑÑ†Ð¸Ð¸ Ð¡Ð¿Ð¸Ñ€Ð¼ÐµÐ½Ð°
 
-cor.test(x, y) #ïðîâåðêà ãèïîòåçû î çíà÷èìîñòè ïàðíîãî êîýôôèöèåíòà êîððåëÿöèè
-cor.test(x, y, method = 'spearman') #ïðîâåðêà ãèïîòåçû î çíà÷èìîñòè êîýôôèöèåíòà êîððåëÿöèè Ñïèðìåíà
-cor.test(x, y, method='kendall') #ïðîâåðêà ãèïîòåçû î çíà÷èìîñòè êîýôôèöèåíòà êîððåëÿöèè Êýíäåëëà
+cor.test(x, y) #Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð³Ð¸Ð¿Ð¾Ñ‚ÐµÐ·Ñ‹ Ð¾ Ð·Ð½Ð°Ñ‡Ð¸Ð¼Ð¾ÑÑ‚Ð¸ Ð¿Ð°Ñ€Ð½Ð¾Ð³Ð¾ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚Ð° ÐºÐ¾Ñ€Ñ€ÐµÐ»ÑÑ†Ð¸Ð¸
+cor.test(x, y, method = 'spearman') #Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð³Ð¸Ð¿Ð¾Ñ‚ÐµÐ·Ñ‹ Ð¾ Ð·Ð½Ð°Ñ‡Ð¸Ð¼Ð¾ÑÑ‚Ð¸ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚Ð° ÐºÐ¾Ñ€Ñ€ÐµÐ»ÑÑ†Ð¸Ð¸ Ð¡Ð¿Ð¸Ñ€Ð¼ÐµÐ½Ð°
+cor.test(x, y, method='kendall') #Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð³Ð¸Ð¿Ð¾Ñ‚ÐµÐ·Ñ‹ Ð¾ Ð·Ð½Ð°Ñ‡Ð¸Ð¼Ð¾ÑÑ‚Ð¸ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚Ð° ÐºÐ¾Ñ€Ñ€ÐµÐ»ÑÑ†Ð¸Ð¸ ÐšÑÐ½Ð´ÐµÐ»Ð»Ð°
 
 install.packages("Hmisc")
 library(Hmisc)
@@ -18,18 +18,18 @@ df <- read.csv(file.choose(), header = TRUE, sep = ",")
 df <- na.omit(df)
 d <- df[3:ncol(df)-1]
 
-plot(d$mstat, d$econ, xlab = "Ìàòñòàòèñêà", ylab = "Ýêîíîìèêà") #äèàãðàììà ðàññåÿíèÿ áîëåå ñëîæíàÿ
-plot <- ggplot(d, aes(d$mstat, d$econ)) + geom_point(aes()) #äèàãðàììà ðàññåÿíèÿ åù¸ áîëåå ñëîæíàÿ
+plot(d$mstat, d$econ, xlab = "ÐœÐ°Ñ‚ÑÑ‚Ð°Ñ‚Ð¸ÑÐºÐ°", ylab = "Ð­ÐºÐ¾Ð½Ð¾Ð¼Ð¸ÐºÐ°") #Ð´Ð¸Ð°Ð³Ñ€Ð°Ð¼Ð¼Ð° Ñ€Ð°ÑÑÐµÑÐ½Ð¸Ñ Ð±Ð¾Ð»ÐµÐµ ÑÐ»Ð¾Ð¶Ð½Ð°Ñ
+plot <- ggplot(d, aes(d$mstat, d$econ)) + geom_point(aes()) #Ð´Ð¸Ð°Ð³Ñ€Ð°Ð¼Ð¼Ð° Ñ€Ð°ÑÑÐµÑÐ½Ð¸Ñ ÐµÑ‰Ñ‘ Ð±Ð¾Ð»ÐµÐµ ÑÐ»Ð¾Ð¶Ð½Ð°Ñ
 
-rcorr(as.matrix(d)) #êîððåëÿöèîííàÿ ìàòðèöà è çíà÷èìîñòü êîýôôèöèåíòîâ â íåé
+rcorr(as.matrix(d)) #ÐºÐ¾Ñ€Ñ€ÐµÐ»ÑÑ†Ð¸Ð¾Ð½Ð½Ð°Ñ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ð° Ð¸ Ð·Ð½Ð°Ñ‡Ð¸Ð¼Ð¾ÑÑ‚ÑŒ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚Ð¾Ð² Ð² Ð½ÐµÐ¹
 
 
-#êîððåëîãðàììà
+#ÐºÐ¾Ñ€Ñ€ÐµÐ»Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ð°
 install.packages("ggplot2")
 install.packages("car")
 install.packages("gclus")
 install.packages("corrplot")
-install.packages("corrgram")  #ïàêåò ñ êîððåëîãðàììàìè
+install.packages("corrgram")  #Ð¿Ð°ÐºÐµÑ‚ Ñ ÐºÐ¾Ñ€Ñ€ÐµÐ»Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ð°Ð¼Ð¸
 install.packages("gplots")
 install.packages("ggm") 
 install.packages("ellipse")
@@ -43,7 +43,7 @@ library(gplots)
 library(ggm) 
 library(ellipse)
 
-scatterplotMatrix(d) #ìàòðèöà äèàãðàìì ðàññåÿíèÿ (graph matrix), ó êîòîðîé íà äèàãîíàëè ãèñòîãðàììû äëÿ ñîîòâåòñòâóþùèõ ïåðåìåííûõ
+scatterplotMatrix(d) #Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ð° Ð´Ð¸Ð°Ð³Ñ€Ð°Ð¼Ð¼ Ñ€Ð°ÑÑÐµÑÐ½Ð¸Ñ (graph matrix), Ñƒ ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð½Ð° Ð´Ð¸Ð°Ð³Ð¾Ð½Ð°Ð»Ð¸ Ð³Ð¸ÑÑ‚Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹ Ð´Ð»Ñ ÑÐ¾Ð¾Ñ‚Ð²ÐµÑ‚ÑÑ‚Ð²ÑƒÑŽÑ‰Ð¸Ñ… Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ñ‹Ñ…
 
 require(corrgram)
 corrgram(d, order=TRUE, lower.panel=panel.shade, upper.panel=panel.pie, text.panel=panel.txt)
@@ -59,7 +59,7 @@ corrplot(cor(d), method="number", diag=FALSE)
 plotcorr(cor(df))
 
 
-#òàáëèöà ñîïðÿæ¸ííîñòè è êðèòåðèé Õè-êâàäðàò
+#Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ð° ÑÐ¾Ð¿Ñ€ÑÐ¶Ñ‘Ð½Ð½Ð¾ÑÑ‚Ð¸ Ð¸ ÐºÑ€Ð¸Ñ‚ÐµÑ€Ð¸Ð¹ Ð¥Ð¸-ÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚
 install.packages("descr")
 library(descr)
 
@@ -67,14 +67,14 @@ guitar <- c(31, (100-31))
 bag <- c(9, (100-9))
 guitar_exp <- rbind(guitar, bag)
 
-#ïðîâåðêà íåçàâèñèìîñòè äâóõ ïåðåìåííûõ ñ ïîìîùüþ òàáëèöû ñîïðÿæåííîñòè
-chisq.test(guitar_exp) #êðèòåðèé Õè-êâàäðàòà
+#Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð½ÐµÐ·Ð°Ð²Ð¸ÑÐ¸Ð¼Ð¾ÑÑ‚Ð¸ Ð´Ð²ÑƒÑ… Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ñ‹Ñ… Ñ Ð¿Ð¾Ð¼Ð¾Ñ‰ÑŒÑŽ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñ‹ ÑÐ¾Ð¿Ñ€ÑÐ¶ÐµÐ½Ð½Ð¾ÑÑ‚Ð¸
+chisq.test(guitar_exp) #ÐºÑ€Ð¸Ñ‚ÐµÑ€Ð¸Ð¹ Ð¥Ð¸-ÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚Ð°
 
-fisher.test(guitar_exp) #òî÷íûé òåñò Ôèøåðà
+fisher.test(guitar_exp) #Ñ‚Ð¾Ñ‡Ð½Ñ‹Ð¹ Ñ‚ÐµÑÑ‚ Ð¤Ð¸ÑˆÐµÑ€Ð°
 
-mosaicplot(guitar_exp, shade = TRUE)#ðåçóëüòàò ãðàôè÷åñêè (òàáëèöà ñîïðÿæåííîñòè)
+mosaicplot(guitar_exp, shade = TRUE)#Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚ Ð³Ñ€Ð°Ñ„Ð¸Ñ‡ÐµÑÐºÐ¸ (Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ð° ÑÐ¾Ð¿Ñ€ÑÐ¶ÐµÐ½Ð½Ð¾ÑÑ‚Ð¸)
 
-#ïîñòðîåíèå òàáëèö ñîïðÿæåííîñòè èç ñûðûõ äàííûõ
+#Ð¿Ð¾ÑÑ‚Ñ€Ð¾ÐµÐ½Ð¸Ðµ Ñ‚Ð°Ð±Ð»Ð¸Ñ† ÑÐ¾Ð¿Ñ€ÑÐ¶ÐµÐ½Ð½Ð¾ÑÑ‚Ð¸ Ð¸Ð· ÑÑ‹Ñ€Ñ‹Ñ… Ð´Ð°Ð½Ð½Ñ‹Ñ…
 table(mtcars$cyl, mtcars$am)
 table(Number_of_cylinders=mtcars$cyl, Transmission=mtcars$am)
 crosstab(mtcars$cyl, mtcars$am, format = "SPSS", expected = TRUE)
