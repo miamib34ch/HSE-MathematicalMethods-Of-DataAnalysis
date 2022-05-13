@@ -61,6 +61,7 @@ plot +
 
 
 #оценка моделей
+
 #создадим две другие
 model1 <- lm(circumference ~ age+I(age^2), data = h)  #оцениваем квадратичную модель
 summary(model1)
