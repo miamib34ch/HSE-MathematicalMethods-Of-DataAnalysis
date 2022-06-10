@@ -16,7 +16,7 @@ df <- read.csv(file.choose(), dec = ",")
 df <- na.omit(df)
 
 #выберем случайным образом 30 стран из базы 
-set.seed(1234) # для воспроизводимости выделите эту строку и следующую и запустите
+set.seed(1234)
 data <- df[sample(nrow(df), 30), ]
 
 #теперь отберем только те столбцы, которые нужны нам для кластерного анализа. Мы будем определять кластеры стран по значениям индексов-компонентов WGI и Freedom House. 
@@ -25,9 +25,10 @@ d <- data %>% select(va:fh_score)
 View(d)
 rownames(d) <- data$country
 
-
+#сохраним отдельно копию для дальнейшего
 date0<-d
 View(date0)
+
 Mdist <- dist(d)
 Mdist #смотрим матрицу расстояний
 
@@ -54,7 +55,6 @@ groups4
 d1 <- d %>% mutate(groups4 = factor(groups4), country = data$country)
 View(d1)
 
-
 library(ggplot2)
 ggplot(data = d1, aes(x = fh_score, y = va, color = groups4)) + geom_point() 
 # vjust и hjust - чтобы подписи были чуть в стороне и не закрывали точки
@@ -77,8 +77,8 @@ d1 %>% filter(groups5 == 4) %>% View
 d1 %>% filter(groups5 == 5) %>% View
 
 kruskal.test(d1$va ~ d1$groups5) #оценка критерием
-
 kruskal.test(d1$fh_score ~ d1$groups5)
+
 install.packages("factoextra")
 library(factoextra)
 
@@ -92,68 +92,31 @@ fviz_nbclust(d, kmeans, method = "wss") +
   labs(subtitle = "Elbow method") +
   geom_vline(xintercept = 4, linetype = 2)
 
-#Silhouette method (“силуэтный метод”).
+#Silhouette method (“силуэтный метод”).
 fviz_nbclust(d, kmeans, method = "silhouette") + labs(subtitle = "Silhouette method")
 
 
-
-
+#неирархическая классификация
 
 d2 <- date0
-cl <- kmeans(d2, 4)
+cl <- kmeans(d2, 4) #метод kmeans
 
 cl
 d2$kmeans4 <- cl$cluster
 View(d2)
 
-if(!require(devtools)) install.packages("devtools")
-devtools::install_github("kassambara/factoextra")
+#все столбцы для анализа должны быть числовыми
+is.numeric(d2$kmeans4)
+d2$kmeans4 = as.numeric(d2$kmeans4)
 
-cl
-is.numeric(d2$fh_score)
-d2$va = as.numeric(d2$rt)
-d2$rt = NULL
 fviz_cluster(cl, d2,  ellipse.type = 'convex')
 
-
-
-
-
-
-
+#сколько кластеров взять
 fviz_nbclust(d2, kmeans, method = "wss") + labs(subtitle = "Elbow method")
 fviz_nbclust(d2, kmeans, method = "wss") +
   labs(subtitle = "Elbow method") +
   geom_vline(xintercept = 4, linetype = 2)
 
+#проверка гипотезы о том, что данные в выборках взяты из одного распределения
 kruskal.test(d2$va ~ d2$kmeans4)
 kruskal.test(d2$fh_score ~ d2$kmeans4)
-
-
-
-
-
-podr <- read.csv(file.choose(), dec = ",")
-podr
-
-set.seed(1234) # для воспроизводимости выделите эту строку и следующую и запустите
-data1 <- podr[sample(nrow(podr), 30), ]
-
-data1$gradyear = NULL
-data1$gender = NULL
-data1$age = NULL
-
-View(data1)
-
-data1 <- na.omit(data1)
-view(dat)
-dz <- data1 %>% select(friends:softball)
-View(dz)
-Mdist <- dist(scale(dz))
-
-hc1 <- hclust(Mdist, method = "single")
-plot(hc1)
-hc1
-
-fviz_nbclust(dz, kmeans, method = "wss") +
-  labs(subtitle = "Elbow method")
